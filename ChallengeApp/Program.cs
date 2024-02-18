@@ -1,20 +1,42 @@
-﻿int number = 7809;
-string numberAsString = number.ToString();
-char[] letters = numberAsString.ToArray();
+﻿using ChallengeApp;
 
-int[] counter = new int[10];
+Employee emp1 = new("Jan", "Kowalski", 29);
+Employee emp2 = new("Maria", "Nowakowska", 56);
+Employee emp3 = new("Zygmunt", "Siarzewski", 43);
 
-foreach(var count in counter)
-    counter[count] = 0;
+emp1.AddScore(8);
+emp2.AddScore(2);
+emp3.AddScore(7);
 
-foreach (char letter in letters)
+emp1.AddScore(1);
+emp2.AddScore(10);
+emp3.AddScore(5);
+
+emp1.AddScore(4);
+emp2.AddScore(9);
+emp3.AddScore(3);
+
+List<Employee> employees = new List<Employee>()
 {
-    counter[int.Parse($"{letter}")]++;
+    emp1, emp2, emp3
+};
+
+
+int maxScore = -1;
+Employee? employeeWithMaxScore = null;
+
+foreach (var emp in employees)
+{
+    if(emp.Result > maxScore)
+    {
+        maxScore = emp.Result;  
+        employeeWithMaxScore = emp;
+    }
 }
 
-Console.WriteLine("Wyniki dla liczby: " +  numberAsString);
+Console.WriteLine("Pracownik z najwyższą oceną:");
 
-for(int i = 0; i < counter.Length; i++)
-{
-    Console.WriteLine(i + "=>" + counter[i]);
-}
+if (employeeWithMaxScore != null)
+    Console.WriteLine(employeeWithMaxScore.Name + " " + employeeWithMaxScore.Surname + " lat " + employeeWithMaxScore.Age + " z oceną " + employeeWithMaxScore.Result);
+else
+    Console.WriteLine("Brak pracowników.");
