@@ -1,13 +1,11 @@
-using ChallengeApp;
-
-namespace EmployeeTests
+namespace ChallengeApp.Tests
 {
     public class Tests
     {
         [Test]
         public void WhenEmployeeCollectOnlyPositiveScores_ShouldCorrectResult()
         {
-            var emp = new Employee("Bogus³aw", "Siermiê¿ny", 32);
+            var emp = new Employee("Bogus³aw", "Siermi¿ny", 32);
 
             emp.AddScore(2);
             emp.AddScore(10);
@@ -24,7 +22,7 @@ namespace EmployeeTests
         [Test]
         public void WhenEmployeeCollectOnlyPenaltyScores_ShouldCorrectResult()
         {
-            var emp = new Employee("Bogus³aw", "Siermiê¿ny", 32);
+            var emp = new Employee("Bogus³aw", "Siermi¿ny", 32);
 
             emp.AddPenaltyScore(8);
             emp.AddPenaltyScore(3);
@@ -41,7 +39,7 @@ namespace EmployeeTests
         [Test]
         public void WhenEmployeeCollectBothTypeOfScores_ShouldCorrectResult()
         {
-            var emp = new Employee("Bogus³aw", "Siermiê¿ny", 32);
+            var emp = new Employee("Bogus³aw", "Siermi¿ny", 32);
 
             emp.AddScore(2);
             emp.AddScore(10);
@@ -52,7 +50,6 @@ namespace EmployeeTests
             var result = emp.Result;
 
             Assert.That(result, Is.EqualTo(5));
-
         }
     }
 }
