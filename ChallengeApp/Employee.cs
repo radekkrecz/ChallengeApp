@@ -12,6 +12,7 @@
             Name = name;
             Surname = surname;
         }
+
         public void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
@@ -24,15 +25,18 @@
         {
             AddGrade((float)grade);
         }
+
         public void AddGrade(decimal grade)
         {
             AddGrade((float)grade);
 
         }
+
         public void AddGrade(uint grade)
         {
             AddGrade((float)grade);
         }
+
         public void AddGrade(int grade)
         {
             AddGrade((float)grade);
