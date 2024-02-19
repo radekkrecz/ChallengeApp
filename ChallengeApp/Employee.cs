@@ -2,7 +2,8 @@
 {
     public class Employee
     {
-        List<int> score = new ();
+        List<int> score = new();
+        List<int> penaltyScore = new();
 
         public string Name { get; private set; }
         public string Surname { get; private set; }
@@ -11,7 +12,7 @@
         {
             get
             {
-                return score.Sum();
+                return ( score.Sum() - penaltyScore.Sum() );
             }
         }
 
@@ -25,6 +26,10 @@
         public void AddScore(int score)
         {
             this.score.Add(score);
+        }
+        public void AddPenaltyScore(int score)
+        {
+            this.penaltyScore.Add(score);
         }
     }
 }
