@@ -41,33 +41,24 @@ namespace ChallengeApp.Tests
         [Test]
         public void WhenNamesOfEmployeesAreEqual_ShouldReturnCorrectResult()
         {
-            Employee emp1 = GetEmployee("Bożena", "Kosiba", 19);
-            Employee emp2 = GetEmployee("Bożena", "Pawlak", 49);
+            Employee emp1 = GetEmployee("Bożena", "Kosiba");
+            Employee emp2 = GetEmployee("Bożena", "Pawlak");
 
             Assert.That(emp1.Name, Is.EqualTo(emp2.Name));
         }
 
         [Test]
-        public void WhenAgesOfEmployeesAreNotEqual_ShouldReturnCorrectResult()
-        {
-            Employee emp1 = GetEmployee("Bożena", "Kosiba", 19);
-            Employee emp2 = GetEmployee("Bożena", "Pawlak", 49);
-
-            Assert.That(emp1.Age, Is.Not.EqualTo(emp2.Age));
-        }
-
-        [Test]
         public void WhenTwoObjectsOfEmployeesAreNotEqual_ShouldReturnCorrectResult()
         {
-            Employee emp1 = GetEmployee("Bożena", "Kosiba", 19);
-            Employee emp2 = GetEmployee("Bożena", "Pawlak", 49);
+            Employee emp1 = GetEmployee("Bożena", "Kosiba");
+            Employee emp2 = GetEmployee("Bożena", "Pawlak");
 
             Assert.That(emp1, Is.Not.EqualTo(emp2));
         }
 
-        private Employee GetEmployee(string name, string surname, int age)
+        private Employee GetEmployee(string name, string surname)
         {
-            return new Employee(name, surname, age);
+            return new Employee(name, surname);
         }
     }
 }

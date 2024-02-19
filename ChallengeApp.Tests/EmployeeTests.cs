@@ -1,55 +1,69 @@
 namespace ChallengeApp.Tests
 {
-    public class Tests
+    public class EmployeeTests
     {
         [Test]
-        public void WhenEmployeeCollectOnlyPositiveScores_ShouldCorrectResult()
+        public void WhenEmployeeCollectMaxValueOfGrades_ShouldCorrectResult()
         {
-            var emp = new Employee("Bogus³aw", "Siermi¿ny", 32);
+            var emp = new Employee("Bogus³aw", "Siermi¿ny");
 
-            emp.AddScore(2);
-            emp.AddScore(10);
-            emp.AddScore(1);
-            emp.AddScore(8);
-            emp.AddScore(4);
+            emp.AddGrade(2);
+            emp.AddGrade(10);
+            emp.AddGrade(1);
+            emp.AddGrade(8);
+            emp.AddGrade(4);
 
+            var statistics = emp.GetStatistics();
 
-            var result = emp.Result;
-
-            Assert.That(result, Is.EqualTo(25));
-
+            Assert.That(statistics.Max, Is.EqualTo(10));
         }
         [Test]
-        public void WhenEmployeeCollectOnlyPenaltyScores_ShouldCorrectResult()
+        public void WhenEmployeeCollectMinValueOfGrades_ShouldCorrectResult()
         {
-            var emp = new Employee("Bogus³aw", "Siermi¿ny", 32);
+            var emp = new Employee("Bogus³aw", "Siermi¿ny");
 
-            emp.AddPenaltyScore(8);
-            emp.AddPenaltyScore(3);
-            emp.AddPenaltyScore(4);
-            emp.AddPenaltyScore(5);
-            emp.AddPenaltyScore(1);
+            emp.AddGrade(2);
+            emp.AddGrade(10);
+            emp.AddGrade(1);
+            emp.AddGrade(8);
+            emp.AddGrade(4);
 
+            var statistics = emp.GetStatistics();
 
-            var result = emp.Result;
-
-            Assert.That(result, Is.EqualTo(-21));
-
+            Assert.That(statistics.Min, Is.EqualTo(1));
         }
         [Test]
-        public void WhenEmployeeCollectBothTypeOfScores_ShouldCorrectResult()
+        public void WhenEmployeeCollectAllTheSameValueOfGrades_ShouldCorrectResult()
         {
-            var emp = new Employee("Bogus³aw", "Siermi¿ny", 32);
+            var emp = new Employee("Bogus³aw", "Siermi¿ny");
 
-            emp.AddScore(2);
-            emp.AddScore(10);
-            emp.AddPenaltyScore(5);
-            emp.AddScore(7);
-            emp.AddPenaltyScore(9);
+            emp.AddGrade(4.5f);
+            emp.AddGrade(4.5f);
+            emp.AddGrade(4.5f);
+            emp.AddGrade(4.5f);
+            emp.AddGrade(4.5f);
 
-            var result = emp.Result;
+            var statistics = emp.GetStatistics();
+            Assert.Multiple(() =>
+            {
+                Assert.That(statistics.Min, Is.EqualTo(4.5f));
+                Assert.That(statistics.Max, Is.EqualTo(4.5f));
+                Assert.That(statistics.Average, Is.EqualTo(4.5f));
+            });
+        }
 
-            Assert.That(result, Is.EqualTo(5));
+        [Test]
+        public void WhenEmployeeCollectNoValueOfGrade_ShouldCorrectResult()
+        {
+            var emp = new Employee("Bogus³aw", "Siermi¿ny");
+
+            var statistics = emp.GetStatistics();
+            Assert.Multiple(() =>
+            {
+                Assert.That(statistics.Min, Is.EqualTo(float.MaxValue));
+                Assert.That(statistics.Max, Is.EqualTo(float.MinValue));
+                Assert.That(statistics.Average, Is.EqualTo(float.NaN));
+            });
         }
     }
 }

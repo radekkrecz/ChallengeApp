@@ -1,42 +1,16 @@
 ﻿using ChallengeApp;
 
-Employee emp1 = new("Jan", "Kowalski", 29);
-Employee emp2 = new("Maria", "Nowakowska", 56);
-Employee emp3 = new("Zygmunt", "Siarzewski", 43);
+Employee employee = new("Jan", "Kowalski");
 
-emp1.AddScore(8);
-emp2.AddScore(2);
-emp3.AddScore(7);
+employee.AddGrade(9);
+employee.AddGrade(1);
+employee.AddGrade(7);
+employee.AddGrade(5);
 
-emp1.AddScore(1);
-emp2.AddScore(10);
-emp3.AddScore(5);
+var statistics1 = employee.GetStatistics();
 
-emp1.AddScore(4);
-emp2.AddScore(9);
-emp3.AddScore(3);
+Console.WriteLine($"Statistics for {employee.Name} {employee.Surname}");
+Console.WriteLine($"Average: {statistics1.Average:N3}");
+Console.WriteLine($"Min: {statistics1.Min:N2}");
+Console.WriteLine($"Max: {statistics1.Max}");
 
-List<Employee> employees = new List<Employee>()
-{
-    emp1, emp2, emp3
-};
-
-
-int maxScore = -1;
-Employee? employeeWithMaxScore = null;
-
-foreach (var emp in employees)
-{
-    if(emp.Result > maxScore)
-    {
-        maxScore = emp.Result;  
-        employeeWithMaxScore = emp;
-    }
-}
-
-Console.WriteLine("Pracownik z najwyższą oceną:");
-
-if (employeeWithMaxScore != null)
-    Console.WriteLine(employeeWithMaxScore.Name + " " + employeeWithMaxScore.Surname + " lat " + employeeWithMaxScore.Age + " z oceną " + employeeWithMaxScore.Result);
-else
-    Console.WriteLine("Brak pracowników.");
