@@ -12,10 +12,51 @@
             Name = name;
             Surname = surname;
         }
-
+        public void AddGrade(double grade)
+        {
+            if (grade >= 0 && grade <= 100)
+                grades.Add((float)grade);
+            else
+                Console.WriteLine("Invalid grade value!");
+        }
+        public void AddGrade(decimal grade)
+        {
+            if (grade >= 0 && grade <= 100)
+                grades.Add((float)grade);
+            else
+                Console.WriteLine("Invalid grade value!");
+        }
+        public void AddGrade(uint grade)
+        {
+            if (grade >= 0 && grade <= 100)
+                grades.Add(grade);
+            else
+                Console.WriteLine("Invalid grade value!");
+        }
+        public void AddGrade(int grade)
+        {
+            if (grade >= 0 && grade <= 100)
+                grades.Add(grade);
+            else
+                Console.WriteLine("Invalid grade value!");
+        }
         public void AddGrade(float grade)
         {
-            grades.Add(grade);
+            if (grade >= 0 && grade <= 100)
+                grades.Add(grade);
+            else
+                Console.WriteLine("Invalid grade value!");
+        }
+        public void AddGrade(string grade)
+        {
+            if (float.TryParse(grade, out float value))
+            {
+                AddGrade(value);
+            }
+            else
+            {
+                Console.WriteLine("Grade string is not a number!");
+            }
         }
 
         public Statistics GetStatistics()
@@ -33,7 +74,7 @@
                 statistics.Average += grade;
             }
 
-            statistics.Average /= grades.Count; 
+            statistics.Average /= grades.Count;
 
             return statistics;
         }

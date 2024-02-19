@@ -2,9 +2,10 @@
 
 Employee employee = new("Jan", "Kowalski");
 
-employee.AddGrade(9);
-employee.AddGrade(1);
-employee.AddGrade(7);
+employee.AddGrade("Ocena");
+employee.AddGrade((decimal)60);
+employee.AddGrade((double)70);
+employee.AddGrade(700);
 employee.AddGrade(5);
 
 var statistics1 = employee.GetStatistics();
