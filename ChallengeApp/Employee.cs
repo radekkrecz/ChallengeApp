@@ -66,6 +66,7 @@ namespace ChallengeApp
 
             return statistics;
         }
+
         public Statistics GetStatisticsWithForEach()
         {
             var statistics = new Statistics();
@@ -85,6 +86,7 @@ namespace ChallengeApp
 
             return statistics;
         }
+
         public Statistics GetStatisticsWithFor()
         {
             var statistics = new Statistics();
@@ -127,6 +129,7 @@ namespace ChallengeApp
 
             return statistics;
         }
+
         public Statistics GetStatisticsWithWhile()
         {
             var statistics = new Statistics();
