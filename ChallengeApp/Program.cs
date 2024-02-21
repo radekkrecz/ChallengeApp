@@ -4,7 +4,7 @@ Console.WriteLine("Witamy w programie ABC do oceny pracownika");
 Console.WriteLine("==========================================");
 
 
-var employee = new Employee();
+var employee = new Employee("", "");
 Console.WriteLine("");
 while(true)
 {
