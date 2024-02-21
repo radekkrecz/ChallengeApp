@@ -57,6 +57,10 @@ namespace ChallengeApp
             {
                 AddGrade(value);
             }
+            else if(grade.Length == 1)
+            {
+                AddGrade(grade[0]);
+            }
             else
             {
                 throw new Exception("Invalid grade value.");
@@ -67,6 +71,9 @@ namespace ChallengeApp
         {
             switch (grade)
             {
+                case var g when g >= '0' && g <= '9':
+                    AddGrade(grade - '0');
+                    break;
                 case 'A':
                 case 'a':
                     AddGrade(100);

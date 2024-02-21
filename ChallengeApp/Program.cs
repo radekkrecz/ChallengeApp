@@ -16,14 +16,7 @@ while(true)
     }
     try
     {
-        if(input.Length == 1)
-        {
-            employee.AddGrade(input.First());
-        }
-        else
-        {
-            employee.AddGrade(input);
-        }
+        employee.AddGrade(input);
     }
     catch (Exception ex) 
     {
