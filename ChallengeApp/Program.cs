@@ -14,7 +14,22 @@ while(true)
     {
         break;  
     }
-    employee.AddGrade(input);
+    try
+    {
+        if(input.Length == 1)
+        {
+            employee.AddGrade(input.First());
+        }
+        else
+        {
+            employee.AddGrade(input);
+        }
+    }
+    catch (Exception ex) 
+    {
+        Console.WriteLine(ex.Message);
+    }
+    
 }
 
 var statistics1 = employee.GetStatistics();

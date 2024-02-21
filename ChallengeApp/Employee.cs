@@ -25,7 +25,7 @@ namespace ChallengeApp
             if (grade >= 0 && grade <= 100)
                 grades.Add(grade);
             else
-                Console.WriteLine($"Invalid grade value. {grade} is not between 0 and 100.");
+                throw new Exception("Grade value is not in range.");
         }
 
         public void AddGrade(double grade)
@@ -57,7 +57,7 @@ namespace ChallengeApp
             }
             else
             {
-                Console.WriteLine($"{grade} is not a number. ");
+                throw new Exception("Invalid grade value.");
             }
         }
 
@@ -91,8 +91,7 @@ namespace ChallengeApp
                     break;
 
                 default:
-                    Console.WriteLine("Wrong letter.");
-                    break;
+                    throw new Exception("Wrong letter.");
             }
         }
 
