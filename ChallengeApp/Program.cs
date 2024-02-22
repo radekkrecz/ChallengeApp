@@ -1,22 +1,23 @@
 ﻿using ChallengeApp;
 
-Console.WriteLine("Witamy w programie ABC do oceny pracownika");
+Console.WriteLine("Witamy w programie ABC do oceny kierownika");
 Console.WriteLine("==========================================");
 
 
-var employee = new Employee("", "");
+var supervisor = new Supervisor();
 Console.WriteLine("");
 while(true)
 {
-    Console.WriteLine("Podaj kolejną wartość oceny:");
+    Console.Write("Podaj kolejną wartość oceny:");
     var input = Console.ReadLine();
+
     if (input == null ||  input == "q")
     {
         break;  
     }
     try
     {
-        employee.AddGrade(input);
+        supervisor.AddGrade(input);
     }
     catch (Exception ex) 
     {
@@ -25,7 +26,7 @@ while(true)
     
 }
 
-var statistics1 = employee.GetStatistics();
+var statistics1 = supervisor.GetStatistics();
 
 Console.WriteLine($"Statistics: Average: {statistics1.Average:N3} Min: {statistics1.Min:N2} Max: {statistics1.Max}");
 
