@@ -121,7 +121,7 @@ namespace ChallengeApp
                 {
                     var line = reader.ReadLine();
 
-                    do
+                    while (line != null)
                     {
                         var number = float.Parse(line);
                         statistics.Max = Math.Max(statistics.Max, number);
@@ -130,7 +130,7 @@ namespace ChallengeApp
                         count++;
                         line = reader.ReadLine();
                     }
-                    while (line != null);
+                    
                 }
 
                 if(count > 0)
