@@ -8,6 +8,10 @@
 
         public int Age { get; private set; }
 
+        public delegate void  GradeAddedDelegate(object sender, EventArgs e);
+        
+        public event GradeAddedDelegate? GradeAdded;
+
         public EmployeeBase() : this("")
         {
         }
@@ -25,6 +29,14 @@
             Name = name;
             Surname = surname;
             Age = age;
+        }
+
+        protected void InvokeGradeAddedEvent()
+        {
+            if(GradeAdded != null) 
+            {
+                GradeAdded(this, EventArgs.Empty);  
+            }
         }
 
         public abstract void AddGrade(float grade);

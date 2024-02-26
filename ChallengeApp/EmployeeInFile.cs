@@ -36,6 +36,7 @@ namespace ChallengeApp
             {
                 using var writer = File.AppendText(fileName);
                 writer.WriteLine(grade);
+                InvokeGradeAddedEvent();
             }
             else
                 throw new Exception("Grade value is not in range.");

@@ -24,9 +24,14 @@
         public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
+            {
                 grades.Add(grade);
+                InvokeGradeAddedEvent();
+            }
             else
+            {
                 throw new Exception("Grade value is not in range.");
+            }
         }
 
         public override void AddGrade(double grade)
