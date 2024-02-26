@@ -2,8 +2,9 @@
 {
     public class EmployeeInMemory : EmployeeBase
     {
-
         List<float> grades = new();
+
+        public override event GradeAddedDelegate? GradeAdded;
 
         public EmployeeInMemory() : base()
         {
@@ -21,12 +22,16 @@
         {
         }
 
+
         public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
             {
                 grades.Add(grade);
-                InvokeGradeAddedEvent();
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {
@@ -112,6 +117,9 @@
                 statistics.Min = Math.Min(statistics.Min, grade);
                 statistics.Average += grade;
             }
+
+            if(grades.Count == 0)
+                return statistics;
 
             statistics.Average /= grades.Count;
 

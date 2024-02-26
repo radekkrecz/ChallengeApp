@@ -6,20 +6,28 @@ namespace ChallengeApp
     {
         const string fileName = "grades.txt";
 
-        public EmployeeInFile() : base() 
+        public override event GradeAddedDelegate? GradeAdded;
+        public event GradeAddedDelegate? GradesCleared;
+
+        public EmployeeInFile() : this("")
         {
         }
 
-        public EmployeeInFile(string name) : base(name)
+        public EmployeeInFile(string name) : this(name,"")
         {
+
         }
 
-        public EmployeeInFile(string name, string surname) : base(name, surname)
+        public EmployeeInFile(string name, string surname) : this(name, surname,0)
         {
         }
 
         public EmployeeInFile(string name, string surname, int age) : base(name, surname, age)
-        {
+        { 
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
         }
 
         public void ClearGrades()
@@ -27,6 +35,11 @@ namespace ChallengeApp
             if (File.Exists(fileName))
             {
                 File.Delete(fileName);
+
+                if (GradesCleared != null)
+                {
+                    GradesCleared(this, new EventArgs());
+                }
             }
         }
 
@@ -36,7 +49,11 @@ namespace ChallengeApp
             {
                 using var writer = File.AppendText(fileName);
                 writer.WriteLine(grade);
-                InvokeGradeAddedEvent();
+
+                if( GradeAdded != null )
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
                 throw new Exception("Grade value is not in range.");

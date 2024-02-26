@@ -10,6 +10,8 @@
 
         List<float> grades = new();
 
+        public event EmployeeBase.GradeAddedDelegate? GradeAdded;
+
         public Supervisor() : this("")
         {
         }
@@ -32,9 +34,14 @@
         public void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
+            {
                 grades.Add(grade);
+                GradeAdded?.Invoke(this, new EventArgs());
+            }
             else
+            {
                 throw new Exception("Grade value is not in range.");
+            }
         }
         public void AddGrade(double grade)
         {

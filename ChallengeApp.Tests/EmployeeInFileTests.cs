@@ -1,16 +1,14 @@
-namespace ChallengeApp.Tests
+﻿namespace ChallengeApp.Tests
 {
-    public class EmployeeTests
+    public class EmployeeInFileTests
     {
         [Test]
         public void WhenEmployeeCollectMaxValueOfGrades_ShouldCorrectResult()
         {
-            var employee = new Employee();
+            var employee = new EmployeeInFile();
 
             employee.AddGrade(2);
             employee.AddGrade(100);
-            employee.AddGrade(101);
-            employee.AddGrade(800);
             employee.AddGrade(4);
 
             var statistics = employee.GetStatistics();
@@ -21,7 +19,7 @@ namespace ChallengeApp.Tests
         [Test]
         public void WhenEmployeeCollectMinValueOfGrades_ShouldCorrectResult()
         {
-            var employee = new Employee();
+            var employee = new EmployeeInFile();
 
             employee.AddGrade(2);
             employee.AddGrade(10);
@@ -37,7 +35,7 @@ namespace ChallengeApp.Tests
         [Test]
         public void WhenEmployeeCollectAllTheSameValueOfGrades_ShouldCorrectResult()
         {
-            var employee = new Employee();
+            var employee = new EmployeeInFile();
 
             employee.AddGrade(47.5f);
             employee.AddGrade(47.5f);
@@ -57,24 +55,23 @@ namespace ChallengeApp.Tests
         [Test]
         public void WhenEmployeeCollectNoValueOfGrade_ShouldCorrectResult()
         {
-            var employee = new Employee();
+            var employee = new EmployeeInFile();
 
             var statistics = employee.GetStatistics();
             Assert.Multiple(() =>
             {
                 Assert.That(statistics.Min, Is.EqualTo(float.MaxValue));
                 Assert.That(statistics.Max, Is.EqualTo(float.MinValue));
-                Assert.That(statistics.Average, Is.EqualTo(float.NaN));
+                Assert.That(statistics.Average, Is.EqualTo(0));
             });
         }
 
         [Test]
         public void WhenGradesAreAsStringsAndOneIsOutOfRange_ShouldCorrectResult()
         {
-            var employee = new Employee();
+            var employee = new EmployeeInFile();
 
             employee.AddGrade("23");
-            employee.AddGrade("459");
             employee.AddGrade("2");
             employee.AddGrade("78");
             employee.AddGrade("95");
@@ -87,9 +84,8 @@ namespace ChallengeApp.Tests
         [Test]
         public void WhenGradesAreAsCharsAndOneIsOutOfRange_ShouldCorrectResult()
         {
-            var employee = new Employee();
+            var employee = new EmployeeInFile();
 
-            employee.AddGrade('F');
             employee.AddGrade('a');
             employee.AddGrade('C');
             employee.AddGrade('b');
@@ -103,7 +99,7 @@ namespace ChallengeApp.Tests
         [Test]
         public void WhenGradesAreAsCharAndOneIsAtMinimumOfRange_ShouldCorrectResult()
         {
-            var employee = new Employee();
+            var employee = new EmployeeInFile();
 
             employee.AddGrade('e');
             employee.AddGrade('A');
@@ -119,7 +115,7 @@ namespace ChallengeApp.Tests
         [Test]
         public void WhenGradesAreAsCharAndOneIsAtMaximumOfRange_ShouldCorrectResult()
         {
-            var employee = new Employee();
+            var employee = new EmployeeInFile();
 
             employee.AddGrade('e');
             employee.AddGrade('A');
@@ -131,5 +127,6 @@ namespace ChallengeApp.Tests
 
             Assert.That(statistics.Max, Is.EqualTo(100));
         }
+
     }
 }

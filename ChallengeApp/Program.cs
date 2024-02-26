@@ -4,7 +4,7 @@ Console.WriteLine("Witamy w programie ABC do oceny kierownika");
 Console.WriteLine("==========================================");
 
 
-var employee = new EmployeeInMemory();
+var employee = new EmployeeInFile();
 
 employee.GradeAdded += EmployeeGradeAdded;
 
