@@ -127,10 +127,6 @@ namespace ChallengeApp
         {
             var statistics = new Statistics();
 
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-            statistics.Average = 0;
-
             if(File.Exists(fileName))
             {
                 int count = 0;
@@ -142,37 +138,11 @@ namespace ChallengeApp
                     while (line != null)
                     {
                         var number = float.Parse(line);
-                        statistics.Max = Math.Max(statistics.Max, number);
-                        statistics.Min = Math.Min(statistics.Min, number);
-                        statistics.Average += number;
+                        statistics.AddGrade(number);
                         count++;
                         line = reader.ReadLine();
                     }
                     
-                }
-
-                if(count > 0)
-                {
-                    statistics.Average /= count;
-
-                    switch (statistics.Average)
-                    {
-                        case var average when average >= 80:
-                            statistics.AverageLetter = 'A';
-                            break;
-                        case var average when average >= 60:
-                            statistics.AverageLetter = 'B';
-                            break;
-                        case var average when average >= 40:
-                            statistics.AverageLetter = 'C';
-                            break;
-                        case var average when average >= 20:
-                            statistics.AverageLetter = 'D';
-                            break;
-                        default:
-                            statistics.AverageLetter = 'E';
-                            break;
-                    }
                 }
             }
             return statistics;  
